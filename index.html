@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MindScore — Mental Health Predictor</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
+        <span class="logo-icon">🧠</span>
+        <span class="logo-text">MindScore</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+        <li><a href="#predict" class="nav-link" data-section="predict">Predict</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HOME PAGE ═══════════════════ -->
+  <section class="page" id="home">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+      </div>
+      <div class="hero-content">
+        <span class="hero-eyebrow">AI-Powered Assessment</span>
+        <h1 class="hero-title">
+          Understand Your<br />
+          <span class="title-accent">Mental Wellbeing</span>
+        </h1>
+        <p class="hero-desc">
+          MindScore uses machine learning to analyse your lifestyle,
+          academic habits, and social media usage — giving you a
+          personalised mental health score in seconds.
+        </p>
+        <div class="hero-actions">
+          <a href="#predict" class="btn btn-primary" id="hero-cta">
+            <span>Get My Score</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#about" class="btn btn-ghost">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Feature pills -->
+      <div class="feature-pills">
+        <div class="pill">
+          <span class="pill-icon">📊</span>
+          <span>Data-Driven Insights</span>
+        </div>
+        <div class="pill">
+          <span class="pill-icon">🔒</span>
+          <span>Private &amp; Secure</span>
+        </div>
+        <div class="pill">
+          <span class="pill-icon">⚡</span>
+          <span>Instant Results</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Lifestyle Factors Analysed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">ML</div>
+        <div class="stat-label">Powered Prediction Engine</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Risk Levels Identified</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PREDICT PAGE ═══════════════════ -->
+  <section class="page" id="predict">
+    <div class="page-header">
+      <span class="page-eyebrow">Step 1 of 1</span>
+      <h2 class="page-title">Your Lifestyle Profile</h2>
+      <p class="page-subtitle">Fill in the details below — all fields are required for an accurate prediction.</p>
+    </div>
+
+    <div class="form-card glass-card">
+      <form id="predict-form" novalidate>
+
+        <!-- ── Group 1: Personal ── -->
+        <fieldset class="form-group">
+          <legend class="group-legend">Personal Information</legend>
+          <div class="fields-grid">
+
+            <!-- Age -->
+            <div class="field-wrap">
+              <label for="age" class="field-label">
+                Age
+                <span class="tooltip" data-tip="Your current age in years (10–100).">?</span>
+              </label>
+              <input
+                type="number" id="age" name="age"
+                class="field-input" placeholder="e.g. 21"
+                min="10" max="100" step="1" required
+              />
+              <span class="field-error" id="err-age"></span>
+            </div>
+
+            <!-- Gender -->
+            <div class="field-wrap">
+              <label for="gender" class="field-label">
+                Gender
+                <span class="tooltip" data-tip="Select the gender you identify with.">?</span>
+              </label>
+              <select id="gender" name="gender" class="field-input" required>
+                <option value="" disabled selected>Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <span class="field-error" id="err-gender"></span>
+            </div>
+
+            <!-- Country -->
+            <div class="field-wrap">
+              <label for="country" class="field-label">
+                Country
+                <span class="tooltip" data-tip="Enter your country of residence. Common countries get specialised scoring.">?</span>
+              </label>
+              <input
+                type="text" id="country" name="country"
+                class="field-input" placeholder="e.g. India"
+                required
+              />
+              <span class="field-error" id="err-country"></span>
+            </div>
+
+            <!-- Academic Level -->
+            <div class="field-wrap">
+              <label for="academic_level" class="field-label">
+                Academic Level
+                <span class="tooltip" data-tip="Your current level of study.">?</span>
+              </label>
+              <select id="academic_level" name="academic_level" class="field-input" required>
+                <option value="" disabled selected>Select level</option>
+                <option value="High School">High School</option>
+                <option value="Undergraduate">Undergraduate</option>
+                <option value="Graduate">Graduate</option>
+              </select>
+              <span class="field-error" id="err-academic_level"></span>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- ── Group 2: Social Media ── -->
+        <fieldset class="form-group">
+          <legend class="group-legend">Social Media Habits</legend>
+          <div class="fields-grid">
+
+            <!-- Most Used Platform -->
+            <div class="field-wrap">
+              <label for="most_used_platform" class="field-label">
+                Most Used Platform
+                <span class="tooltip" data-tip="The social media app you use most frequently.">?</span>
+              </label>
+              <select id="most_used_platform" name="most_used_platform" class="field-input" required>
+                <option value="" disabled selected>Select platform</option>
+                <option value="Facebook">Facebook</option>
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="Instagram">Instagram</option>
+                <option value="Snapchat">Snapchat</option>
+                <option value="Twitter">Twitter</option>
+                <option value="YouTube">YouTube</option>
+                <option value="TikTok">TikTok</option>
+                <option value="LINE">LINE</option>
+                <option value="KakaoTalk">KakaoTalk</option>
+                <option value="VKontakte">VKontakte</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="WeChat">WeChat</option>
+              </select>
+              <span class="field-error" id="err-most_used_platform"></span>
+            </div>
+
+            <!-- Purpose Of Use -->
+            <div class="field-wrap">
+              <label for="purpose_of_use" class="field-label">
+                Primary Purpose of Use
+                <span class="tooltip" data-tip="Why do you mainly use social media?">?</span>
+              </label>
+              <select id="purpose_of_use" name="purpose_of_use" class="field-input" required>
+                <option value="" disabled selected>Select purpose</option>
+                <option value="Networking">Networking</option>
+                <option value="Education">Education</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="News">News</option>
+              </select>
+              <span class="field-error" id="err-purpose_of_use"></span>
+            </div>
+
+            <!-- Avg Daily Usage Hours -->
+            <div class="field-wrap">
+              <label for="avg_daily_usage_hours" class="field-label">
+                Avg. Daily Usage (hrs)
+                <span class="tooltip" data-tip="Average hours spent on social media each day (0–24).">?</span>
+              </label>
+              <input
+                type="number" id="avg_daily_usage_hours" name="avg_daily_usage_hours"
+                class="field-input" placeholder="e.g. 3.5"
+                min="0" max="24" step="0.1" required
+              />
+              <span class="field-error" id="err-avg_daily_usage_hours"></span>
+            </div>
+
+            <!-- Daily Unlocks -->
+            <div class="field-wrap">
+              <label for="daily_unlocks" class="field-label">
+                Daily Phone Unlocks
+                <span class="tooltip" data-tip="How many times you unlock your phone in a typical day.">?</span>
+              </label>
+              <input
+                type="number" id="daily_unlocks" name="daily_unlocks"
+                class="field-input" placeholder="e.g. 40"
+                min="0" step="1" required
+              />
+              <span class="field-error" id="err-daily_unlocks"></span>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- ── Group 3: Lifestyle ── -->
+        <fieldset class="form-group">
+          <legend class="group-legend">Daily Lifestyle</legend>
+          <div class="fields-grid">
+
+            <!-- Study Hours -->
+            <div class="field-wrap">
+              <label for="study_hours" class="field-label">
+                Daily Study Hours
+                <span class="tooltip" data-tip="Hours you spend studying or in class per day (0–24).">?</span>
+              </label>
+              <input
+                type="number" id="study_hours" name="study_hours"
+                class="field-input" placeholder="e.g. 5.0"
+                min="0" max="24" step="0.1" required
+              />
+              <span class="field-error" id="err-study_hours"></span>
+            </div>
+
+            <!-- Physical Activity Hours -->
+            <div class="field-wrap">
+              <label for="physical_activity_hours" class="field-label">
+                Physical Activity (hrs/day)
+                <span class="tooltip" data-tip="Hours of exercise or physical activity per day (0–24).">?</span>
+              </label>
+              <input
+                type="number" id="physical_activity_hours" name="physical_activity_hours"
+                class="field-input" placeholder="e.g. 1.0"
+                min="0" max="24" step="0.1" required
+              />
+              <span class="field-error" id="err-physical_activity_hours"></span>
+            </div>
+
+            <!-- Sleep Hours -->
+            <div class="field-wrap">
+              <label for="sleep_hours_per_night" class="field-label">
+                Sleep Hours per Night
+                <span class="tooltip" data-tip="Average hours of sleep you get each night (0–24).">?</span>
+              </label>
+              <input
+                type="number" id="sleep_hours_per_night" name="sleep_hours_per_night"
+                class="field-input" placeholder="e.g. 7.0"
+                min="0" max="24" step="0.1" required
+              />
+              <span class="field-error" id="err-sleep_hours_per_night"></span>
+            </div>
+
+            <!-- Stress Level -->
+            <div class="field-wrap">
+              <label for="stress_level" class="field-label">
+                Stress Level
+                <span class="tooltip" data-tip="Your typical perceived stress level.">?</span>
+              </label>
+              <select id="stress_level" name="stress_level" class="field-input" required>
+                <option value="" disabled selected>Select stress level</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Very High">Very High</option>
+              </select>
+              <span class="field-error" id="err-stress_level"></span>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="reset-btn">Reset Form</button>
+          <button type="submit" class="btn btn-primary" id="predict-btn">
+            <span class="btn-label">Predict My Score</span>
+            <span class="btn-spinner" id="btn-spinner" hidden>
+              <svg class="spinner-svg" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4" stroke-dashoffset="10" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- ═══════════════════ RESULT SECTION ═══════════════════ -->
+    <div id="result-section" class="result-section" hidden>
+      <div class="result-card glass-card" id="result-card">
+
+        <!-- Score ring -->
+        <div class="score-ring-wrap">
+          <svg class="score-ring" viewBox="0 0 120 120" id="score-ring-svg">
+            <circle class="ring-bg" cx="60" cy="60" r="50" />
+            <circle class="ring-fill" cx="60" cy="60" r="50" id="ring-fill" />
+          </svg>
+          <div class="score-inner">
+            <div class="score-number" id="result-score">--</div>
+            <div class="score-label">/ 10</div>
+          </div>
+        </div>
+
+        <!-- Result details -->
+        <div class="result-details">
+          <div class="result-badge" id="result-badge">
+            <span class="badge-dot" id="badge-dot"></span>
+            <span class="badge-text" id="result-risk">—</span>
+          </div>
+
+          <div class="result-row">
+            <span class="result-key">Mental Score</span>
+            <span class="result-val" id="result-score-display">—</span>
+          </div>
+          <div class="result-row">
+            <span class="result-key">Risk Level</span>
+            <span class="result-val" id="result-risk-display">—</span>
+          </div>
+          <div class="result-row">
+            <span class="result-key">Assessment</span>
+            <span class="result-val" id="result-assessment">—</span>
+          </div>
+
+          <p class="result-message" id="result-message"></p>
+
+          <button class="btn btn-ghost full-width" id="retake-btn">Take Again</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Error Banner -->
+    <div class="error-banner" id="error-banner" hidden>
+      <span class="error-icon">⚠</span>
+      <span class="error-text" id="error-text"></span>
+      <button class="error-close" id="error-close" aria-label="Dismiss">✕</button>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════ ABOUT PAGE ═══════════════════ -->
+  <section class="page" id="about">
+    <div class="page-header">
+      <span class="page-eyebrow">How it works</span>
+      <h2 class="page-title">About MindScore</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-card glass-card">
+        <div class="about-icon">🤖</div>
+        <h3>Machine Learning Model</h3>
+        <p>A trained regression model analyses your 12-factor lifestyle profile and outputs a continuous mental health score.</p>
+      </div>
+      <div class="about-card glass-card">
+        <div class="about-icon">📈</div>
+        <h3>Score Interpretation</h3>
+        <p>Scores above 7 indicate good wellbeing (Low Risk). 5–7 is Moderate Risk. Below 5 suggests High Risk and warrants attention.</p>
+      </div>
+      <div class="about-card glass-card">
+        <div class="about-icon">🛡️</div>
+        <h3>Privacy First</h3>
+        <p>No data is stored. Your answers are sent directly to the prediction API and discarded after the response is returned.</p>
+      </div>
+    </div>
+    <p class="disclaimer">
+      ⚕ MindScore is an educational tool only and does not constitute medical advice.
+      If you are in distress, please contact a qualified mental health professional.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>MindScore © 2025 — Built with FastAPI &amp; Vanilla JS</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
